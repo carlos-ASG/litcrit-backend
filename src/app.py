@@ -1,10 +1,15 @@
 from flask import Flask
-from routes import init_routes
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
-# Initialize routes
-init_routes(app)
+from routes.lirbos_routes import libros
+from routes.autores_routes import autores
+
+app.register_blueprint(libros, url_prefix='/libros')
+app.register_blueprint(autores, url_prefix='/autores')
 
 if __name__ == "__main__":
     app.run(debug=True)
