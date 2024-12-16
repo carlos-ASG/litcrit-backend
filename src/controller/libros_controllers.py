@@ -20,3 +20,19 @@ def getById(id):
         return libro
     else:
         return None
+
+def insert(data):
+    try:
+        db.libros.insert_one(data)
+        return True
+    except Exception as e:
+        print(f"Error al insertar el libro: {e}")
+        return False
+
+def delete(id):
+    try:
+        result = db.libros.delete_one({"_id": ObjectId(id)})
+        return True if result.deleted_count == 1 else False
+    except Exception as e:
+        print(f"Error al eliminar el libro: {e}")
+        return False
