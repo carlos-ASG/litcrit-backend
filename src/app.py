@@ -9,7 +9,7 @@ CORS(app)
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # Cambia esto por una clave secreta segura
 jwt = JWTManager(app)
 
-from routes.lirbos_routes import libros
+from routes.libros_routes import libros
 from routes.autores_routes import autores
 from routes.auth_routes import auth
 
