@@ -7,7 +7,6 @@ def getAll():
     resultado = []
     for libro in libros:
         libro['_id'] = str(libro['_id'])  # Convertir ObjectId a string
-        libro['autor'] = str(libro['autor'])
         resultado.append(libro)
     print(resultado)
     return resultado

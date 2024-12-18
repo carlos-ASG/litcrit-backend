@@ -20,7 +20,6 @@ def getByIdRoute(id):
         return jsonify({"error": "Libro no encontrado"}), 404
 
 @libros.route('/insert', methods=['POST'])
-@jwt_required()
 def insertRoute():
     data = request.get_json()
     result = insert(data)

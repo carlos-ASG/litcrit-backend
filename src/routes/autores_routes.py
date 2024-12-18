@@ -37,3 +37,4 @@ def deleteRoute(id):
         return jsonify({"message": "Autor eliminado correctamente"}), 200
     else:
         return jsonify({"error": "Error al eliminar el autor"}), 400
+
