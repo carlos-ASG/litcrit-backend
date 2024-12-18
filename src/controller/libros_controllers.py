@@ -7,7 +7,6 @@ def getAll():
     resultado = []
     for libro in libros:
         libro['_id'] = str(libro['_id'])  # Convertir ObjectId a string
-        libro['autor'] = str(libro['autor'])
         resultado.append(libro)
     print(resultado)
     return resultado
@@ -36,3 +35,22 @@ def delete(id):
     except Exception as e:
         print(f"Error al eliminar el libro: {e}")
         return False
+
+def add_review(id, username, review):
+    try:
+        db.libros.update_one(
+            {"_id": ObjectId(id)},
+            {"$push": {"reseña": {"username": username, "reseña": review}}}
+        )
+        return True
+    except Exception as e:
+        print(f"Error al agregar la reseña: {e}")
+        return False
+
+def getByTitulo(titulo):
+    libro = db.libros.find_one({'titulo': titulo})
+    if libro:
+        libro['_id'] = str(libro['_id'])
+        return libro
+    else:
+        return None
