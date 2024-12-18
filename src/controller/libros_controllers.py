@@ -46,3 +46,11 @@ def add_review(id, username, review):
     except Exception as e:
         print(f"Error al agregar la reseña: {e}")
         return False
+
+def getByTitulo(titulo):
+    libro = db.libros.find_one({'titulo': titulo})
+    if libro:
+        libro['_id'] = str(libro['_id'])
+        return libro
+    else:
+        return None

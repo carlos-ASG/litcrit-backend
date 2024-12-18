@@ -30,7 +30,6 @@ def insertRoute():
     
     
 @libros.route('/delete/<id>', methods=['DELETE'])
-@jwt_required()
 def deleteRoute(id):
     result = delete(id)
     if result:
@@ -48,3 +47,14 @@ def addReviewRoute(id):
         return jsonify({"message": "Reseña agregada correctamente"}), 200
     else:
         return jsonify({"error": "Error al agregar la reseña"}), 400
+    
+@libros.route('/getByTitulo', methods=['GET'])
+def getByTituloRoute():
+    data = request.get_json()
+    titulo = data.get('titulo')
+    print(titulo)
+    libro = getByTitulo(titulo)
+    if libro:
+        return jsonify(libro), 200
+    else:
+        return jsonify({"error": "Libro no encontrado"}), 404
