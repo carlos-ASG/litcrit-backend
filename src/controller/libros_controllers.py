@@ -36,3 +36,14 @@ def delete(id):
     except Exception as e:
         print(f"Error al eliminar el libro: {e}")
         return False
+
+def add_review(id, username, review):
+    try:
+        db.libros.update_one(
+            {"_id": ObjectId(id)},
+            {"$push": {"reseña": {"username": username, "reseña": review}}}
+        )
+        return True
+    except Exception as e:
+        print(f"Error al agregar la reseña: {e}")
+        return False

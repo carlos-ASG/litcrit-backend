@@ -38,3 +38,15 @@ def deleteRoute(id):
         return jsonify({"message": "Libro eliminado correctamente"}), 200
     else:
         return jsonify({"error": "Error al eliminar el libro"}), 400
+
+@libros.route('/addReview/<id>', methods=['POST'])
+@jwt_required()
+def addReviewRoute(id):
+    data = request.get_json()
+    username = data.get('username')
+    review = data.get('reseña')
+    result = add_review(id, username, review)
+    if result:
+        return jsonify({"message": "Reseña agregada correctamente"}), 200
+    else:
+        return jsonify({"error": "Error al agregar la reseña"}), 400
